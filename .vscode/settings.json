@@ -5,5 +5,19 @@
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.suggest.insertMode": "replace",
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.suggest.insertMode": "replace",
+		"editor.defaultFormatter": "biomejs.biome"
 	}
 }
