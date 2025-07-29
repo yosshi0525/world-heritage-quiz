@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 
 const notoSansJp = Noto_Sans_JP({
