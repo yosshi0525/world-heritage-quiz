@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+import AppSidebar from "@/components/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 const notoSansJp = Noto_Sans_JP({
 	variable: "--font-noto-sans-jp",
@@ -27,7 +29,13 @@ export default function RootLayout({
 			<body
 				className={`${notoSansJp.variable} ${getBrainsMono.variable} antialiased`}
 			>
-				{children}
+				<SidebarProvider>
+					<AppSidebar />
+					<main>
+						<SidebarTrigger />
+						{children}
+					</main>
+				</SidebarProvider>
 			</body>
 		</html>
 	);
