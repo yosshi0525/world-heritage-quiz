@@ -2,7 +2,7 @@
 	{
 		"id": 1,
 		"name": {
-			"en": "Buddhist Monuments in the Hōryū‑ji Area",
+			"en": "Buddhist Monuments in the Hōryū-ji Area",
 			"ja": "法隆寺地域の仏教建造物"
 		},
 		"kind": "文化遺産",
@@ -12,7 +12,7 @@
 	},
 	{
 		"id": 2,
-		"name": { "en": "Himeji‑jō", "ja": "姫路城" },
+		"name": { "en": "Himeji-jō", "ja": "姫路城" },
 		"kind": "文化遺産",
 		"year": 1993,
 		"criteria": ["i", "iv"],
@@ -28,7 +28,7 @@
 	},
 	{
 		"id": 4,
-		"name": { "en": "Shirakami‑Sanchi", "ja": "白神山地" },
+		"name": { "en": "Shirakami-Sanchi", "ja": "白神山地" },
 		"kind": "自然遺産",
 		"year": 1993,
 		"criteria": ["ix"],
@@ -48,7 +48,7 @@
 	{
 		"id": 6,
 		"name": {
-			"en": "Historic Villages of Shirakawa‑go and Gokayama",
+			"en": "Historic Villages of Shirakawa-go and Gokayama",
 			"ja": "白川郷・五箇山の合掌造り集落"
 		},
 		"kind": "文化遺産",
@@ -146,7 +146,7 @@
 	{
 		"id": 16,
 		"name": {
-			"en": "Hiraizumi – Temples, Gardens and Archaeological Sites Representing the Buddhist Pure Land",
+			"en": "Hiraizumi - Temples, Gardens and Archaeological Sites Representing the Buddhist Pure Land",
 			"ja": "平泉─仏国土（浄土）を表す建築・庭園及び考古学的遺跡群"
 		},
 		"kind": "文化遺産",
@@ -179,8 +179,8 @@
 	{
 		"id": 19,
 		"name": {
-			"en": "Sites of Japan’s Meiji Industrial Revolution: Iron and Steel, Shipbuilding and Coal Mining",
-			"ja": "明治日本の産業革命遺産　製鉄・製鋼、造船、石炭産業"
+			"en": "Sites of Japan's Meiji Industrial Revolution: Iron and Steel, Shipbuilding and Coal Mining",
+			"ja": "明治日本の産業革命遺産 製鉄・製鋼、造船、石炭産業"
 		},
 		"kind": "文化遺産",
 		"year": 2015,
@@ -190,8 +190,8 @@
 	{
 		"id": 20,
 		"name": {
-			"en": "The Architectural Work of Le Corbusier, an Outstanding Contribution to the Modern Movement",
-			"ja": "ル・コルビュジエの建築作品‑近代建築運動への顕著な貢献‑"
+			"en": "The Architectural Work of Le Corbusier, an Outstanding Contribution to the Modern Movement",
+			"ja": "ル・コルビュジエの建築作品-近代建築運動への顕著な貢献-"
 		},
 		"kind": "文化遺産",
 		"year": 2016,
@@ -223,7 +223,7 @@
 	{
 		"id": 23,
 		"name": {
-			"en": "Mozu‑Furuichi Kofun Group: Mounded Tombs of Ancient Japan",
+			"en": "Mozu-Furuichi Kofun Group: Mounded Tombs of Ancient Japan",
 			"ja": "百舌鳥・古市古墳群"
 		},
 		"kind": "文化遺産",
@@ -234,7 +234,7 @@
 	{
 		"id": 24,
 		"name": {
-			"en": "Amami‑Oshima Island, Tokunoshima Island, Northern part of Okinawa Island, and Iriomote Island",
+			"en": "Amami-Oshima Island, Tokunoshima Island, Northern part of Okinawa Island, and Iriomote Island",
 			"ja": "奄美大島、徳之島、沖縄島北部及び西表島"
 		},
 		"kind": "自然遺産",
