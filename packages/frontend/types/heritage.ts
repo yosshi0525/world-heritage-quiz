@@ -14,7 +14,7 @@ export type Criteria =
 	| "ix"
 	| "x";
 
-type Attribute = "負の遺産" | "文化的景観" | "危機遺産";
+type Attribute = "文化的景観" | "負の遺産" | "危機遺産";
 
 type Keyword = {
 	text: string;

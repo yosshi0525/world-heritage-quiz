@@ -1,46 +1,60 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { allChapters } from "@/public/data/heritages";
 import { notFound } from "next/navigation";
 import { use, useEffect, useMemo, useState } from "react";
+import { getChapter } from "./getChapter";
 
 type Props = {
 	params: Promise<{ chapterId: string }>;
 };
 
+const N = 10;
+
 export default function Page({ params }: Props) {
 	const chapterId = Number(use(params).chapterId);
-	const chapter = allChapters.find((heritage) => heritage.id === chapterId);
-	if (chapter == null) notFound();
+	const chapter = getChapter(chapterId);
 
-	const heritage = chapter.heritages[0];
-	const keywords = useMemo(
-		() =>
-			chapter.heritages
-				.flatMap((heritage) => heritage.keywords)
-				.map((keyword) => keyword.text),
-		[chapter],
-	);
+	if (!chapter) {
+		notFound();
+	}
+
+	const order = useMemo(() => {
+		return Array.from({ length: chapter.heritages.length })
+			.map((_, i) => i)
+			.sort(() => 0.5 - Math.random());
+	}, [chapter]);
+
+	const [questionNumber, setQuestionNumber] = useState(1);
+
+	const heritage = chapter.heritages[order[questionNumber - 1]];
+
+	const correctAnswerCount = heritage ? heritage.keywords.length : 0;
 
 	const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
-
 	const [selections, setSelections] = useState<string[]>([]);
+	const [showAnswer, setShowAnswer] = useState(false);
+	const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+	const [isFinished, setIsFinished] = useState(false);
 
 	useEffect(() => {
+		const allKeywords = chapter.heritages
+			.flatMap((heritage) => heritage.keywords)
+			.map((keyword) => keyword.text);
+
 		const selections = heritage.keywords.map((k) => k.text);
-		while (selections.length < 20) {
-			const i = Math.floor(Math.random() * keywords.length);
-			const next = keywords[i];
+		while (selections.length < N) {
+			const i = Math.floor(Math.random() * allKeywords.length);
+			const next = allKeywords[i];
 			if (!selections.includes(next)) {
 				selections.push(next);
 			}
+			selections.sort(() => 0.5 - Math.random());
+			setSelections(selections);
 		}
-		selections.sort(() => 0.5 - Math.random());
-		setSelections(selections);
-	}, [heritage, keywords]);
+	}, [chapter, heritage]);
 
-	const handleClick = (keyword: string) => {
+	const handleClickSelection = (keyword: string) => {
 		if (selectedKeywords.some((k) => k === keyword)) {
 			setSelectedKeywords(selectedKeywords.filter((k) => k !== keyword));
 		} else {
@@ -48,38 +62,88 @@ export default function Page({ params }: Props) {
 		}
 	};
 
+	const checkAnswer = () =>
+		selectedKeywords.length === heritage.keywords.length &&
+		heritage.keywords.every((keyword) =>
+			selectedKeywords.includes(keyword.text),
+		);
+
 	const handleClickAnswer = () => {
-		if (selectedKeywords.length !== heritage.keywords.length)
-			return console.log("不正解");
-		for (const k of heritage.keywords) {
-			if (!selectedKeywords.includes(k.text)) return console.log("不正解");
+		if (checkAnswer()) {
+			setIsCorrect(true);
+		} else {
+			setIsCorrect(false);
 		}
-		return console.log("正解");
+		setShowAnswer(true);
+	};
+
+	const handleClickNext = () => {
+		setSelectedKeywords([]);
+		setIsCorrect(null);
+		setShowAnswer(false);
+		if (questionNumber < chapter.heritages.length) {
+			setQuestionNumber(questionNumber + 1);
+		} else {
+			setIsFinished(true);
+		}
 	};
 
 	return (
-		<div>
+		<div className="max-w-2xl p-16">
+			<p className="text-xl">Q. {questionNumber}</p>
 			<h1 className="text-2xl font-bold">{heritage.name}</h1>
-			<p>登録年{heritage.inscriptionYear}年</p>
+			<p>登録年: {heritage.inscriptionYear}年</p>
+			<p>国: {heritage.countries.join(" / ")}</p>
 
-			<div className="flex gap-1 flex-wrap">
-				{selections.map((keyword) => (
-					<Button
-						key={keyword}
-						type="button"
-						onClick={() => {
-							handleClick(keyword);
-						}}
-						variant={
-							selectedKeywords.includes(keyword) ? "secondary" : "default"
-						}
-					>
-						{keyword}
-					</Button>
-				))}
+			<div className="flex flex-col gap-10 items-center py-4">
+				<div className="flex gap-2 flex-wrap items-center grow">
+					{selections.map((selection) => (
+						<Button
+							key={selection}
+							type="button"
+							onClick={() => {
+								handleClickSelection(selection);
+							}}
+							variant={
+								selectedKeywords.includes(selection) ? "secondary" : "default"
+							}
+							className={
+								showAnswer &&
+								heritage.keywords
+									.map((keyword) => keyword.text)
+									.includes(selection)
+									? selectedKeywords.includes(selection)
+										? "border-2 border-green-500"
+										: "border-2 border-red-500"
+									: "border-2 border-transparent"
+							}
+						>
+							{selection}
+						</Button>
+					))}
+				</div>
+
+				<p>
+					{selectedKeywords.length} / {correctAnswerCount} 選択中
+				</p>
+
+				<div>
+					{showAnswer ? (
+						<Button onClick={handleClickNext}>次へ</Button>
+					) : (
+						<Button
+							onClick={handleClickAnswer}
+							// disabled={!(selectedKeywords.length === correctAnswerCount)}
+						>
+							答え合わせ
+						</Button>
+					)}
+				</div>
 			</div>
 
-			<Button onClick={handleClickAnswer}>答え合わせ</Button>
+			{showAnswer && <p>{isCorrect ? "正解" : "不正解"}</p>}
+
+			{isFinished && <p>終了</p>}
 		</div>
 	);
 }

@@ -1,6 +1,6 @@
 import type { Chapter } from "@/types/chapter";
 
-export const heritages12: Chapter = {
+export const chapter12: Chapter = {
 	id: 12,
 	title: "仏教",
 	heritages: [

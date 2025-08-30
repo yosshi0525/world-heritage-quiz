@@ -1,6 +1,6 @@
 import type { Chapter } from "@/types/chapter";
 
-export const chapter5: Chapter = {
+export const chapter05: Chapter = {
 	id: 5,
 	title: "シリアル・サイト／トラウンスバウンダリー",
 	heritages: [

@@ -1,0 +1,100 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter10: Chapter = {
+	id: 10,
+	title: "キリスト教（正教会／東方諸教会）",
+	heritages: [
+		{
+			id: 1,
+			name: "メテオラの修道院",
+			countries: ["ギリシャ"],
+			heritageType: "複合",
+			inscriptionYear: 1988,
+			criteria: ["i", "ii", "iv", "v", "vii"],
+			attributes: [],
+			keywords: [
+				{ text: "メタモルフォシス修道院", important: true },
+				{ text: "クレタ様式", important: false },
+				{ text: "イコン", important: true },
+			],
+		},
+		{
+			id: 2,
+			name: "キーウ：正ソフィア聖堂と関連修道院群、キーウ・ペチェルーシク大修道院",
+			countries: ["ウクライナ"],
+			heritageType: "文化",
+			inscriptionYear: 1990,
+			criteria: ["i", "ii", "iii", "iv"],
+			attributes: ["危機遺産"],
+			keywords: [
+				{ text: "キーウ・ルーシ", important: true },
+				{ text: "ヤロスラフ賢公", important: true },
+			],
+		},
+		{
+			id: 3,
+			name: "セルギエフ・ポサドのトロイツェ・セルギエフ大修道院",
+			countries: ["ロシア"],
+			heritageType: "文化",
+			inscriptionYear: 1993,
+			criteria: ["ii", "iv"],
+			attributes: [],
+			keywords: [
+				{ text: "セルギー・ラドネシスキー", important: true },
+				{ text: "ウスペンスキー聖堂", important: false },
+			],
+		},
+		{
+			id: 4,
+			name: "エチミジアンの大聖堂と教会群、およびズヴァルトノツの考古遺跡",
+			countries: ["アルメニア"],
+			heritageType: "文化",
+			inscriptionYear: 2000,
+			criteria: ["ii", "iii"],
+			attributes: [],
+			keywords: [
+				{
+					text: "世界で初めてキリスト教を国境としたアルメニア",
+					important: false,
+				},
+				{ text: "主教座聖堂", important: true },
+			],
+		},
+		{
+			id: 5,
+			name: "ゲラティ修道院",
+			countries: ["ジョージア"],
+			heritageType: "文化",
+			inscriptionYear: 1994,
+			criteria: ["iv"],
+			attributes: [],
+			keywords: [
+				{ text: "ジョージア正教会最大の修道院", important: true },
+				{ text: "バグラティ大聖堂が削除", important: false },
+			],
+		},
+		{
+			id: 6,
+			name: "リラの修道院",
+			countries: ["ブルガリア"],
+			heritageType: "文化",
+			inscriptionYear: 1983,
+			criteria: ["vi"],
+			attributes: [],
+			keywords: [
+				{ text: "ブルガリア正教", important: false },
+				{ text: "イワン・リルスキー", important: true },
+			],
+		},
+		{
+			id: 7,
+			name: "ファジル・ゲビ・ゴンダールの遺跡群",
+			countries: ["エチオピア"],
+			heritageType: "文化",
+			inscriptionYear: 1979,
+			criteria: ["ii", "iii"],
+			attributes: [],
+			keywords: [{ text: "ゴンダール様式", important: true }],
+		},
+	],
+};

@@ -6,10 +6,10 @@
 	},
 	"dependencies": {
 		"aws-cdk-lib": "2.207.0",
-		"constructs": "^10.0.0"
+		"constructs": "^10.4.2"
 	},
 	"devDependencies": {
-		"@types/bun": "^1.2.19",
+		"@types/bun": "^1.2.21",
 		"aws-cdk": "2.1023.0",
 		"typescript": "~5.8.3"
 	},

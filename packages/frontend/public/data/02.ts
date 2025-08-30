@@ -1,8 +1,8 @@
 import type { Chapter } from "@/types/chapter";
 
-export const heritages2: Chapter = {
+export const chapter02: Chapter = {
 	id: 2,
-	title: "",
+	title: "日本の遺産",
 	heritages: [
 		{
 			id: 1,
@@ -11,7 +11,7 @@ export const heritages2: Chapter = {
 			heritageType: "文化",
 			inscriptionYear: 2021,
 			criteria: ["iii", "v"],
-			attributes: ["シリアルサイト"],
+			attributes: [],
 			keywords: [
 				{
 					text: "狩猟・漁労・採集による定住の開始と発展、成熟",
