@@ -1,5 +1,19 @@
 import type { Country } from "./countries";
 
+type HeritageType = "文化" | "自然" | "複合";
+
+export type Criteria =
+	| "i"
+	| "ii"
+	| "iii"
+	| "iv"
+	| "v"
+	| "vi"
+	| "vii"
+	| "viii"
+	| "ix"
+	| "x";
+
 type Keyword = {
 	text: string;
 	important: boolean;
@@ -9,20 +23,9 @@ export type Heritage = {
 	id: number;
 	name: string;
 	countries: Country[];
-	heritageType: "文化" | "自然" | "複合";
+	heritageType: HeritageType;
 	inscriptionYear: number;
-	criteria: (
-		| "i"
-		| "ii"
-		| "iii"
-		| "iv"
-		| "v"
-		| "vi"
-		| "vii"
-		| "viii"
-		| "ix"
-		| "x"
-	)[];
+	criteria: Criteria[];
 	attributes: (
 		| "負の遺産"
 		| "文化的景観"

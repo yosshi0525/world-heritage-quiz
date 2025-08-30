@@ -1,21 +1,29 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { use, useEffect, useMemo, useState } from "react";
-import { heritages, keywords } from "@/public/data/heritages";
+import { allChapters } from "@/public/data/heritages";
 import { notFound } from "next/navigation";
+import { use, useEffect, useMemo, useState } from "react";
 
 type Props = {
-	params: Promise<{ id: string }>;
+	params: Promise<{ chapterId: string }>;
 };
 
 export default function Page({ params }: Props) {
-	const id = Number(use(params).id);
-	const heritage = heritages.find((heritage) => heritage.id === id);
+	const chapterId = Number(use(params).chapterId);
+	const chapter = allChapters.find((heritage) => heritage.id === chapterId);
+	if (chapter == null) notFound();
+
+	const heritage = chapter.heritages[0];
+	const keywords = useMemo(
+		() =>
+			chapter.heritages
+				.flatMap((heritage) => heritage.keywords)
+				.map((keyword) => keyword.text),
+		[chapter],
+	);
 
 	const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
-
-	if (heritage == null) notFound();
 
 	const [selections, setSelections] = useState<string[]>([]);
 
@@ -30,7 +38,7 @@ export default function Page({ params }: Props) {
 		}
 		selections.sort(() => 0.5 - Math.random());
 		setSelections(selections);
-	}, [heritage]);
+	}, [heritage, keywords]);
 
 	const handleClick = (keyword: string) => {
 		if (selectedKeywords.some((k) => k === keyword)) {

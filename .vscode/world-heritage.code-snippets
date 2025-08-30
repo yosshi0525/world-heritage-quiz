@@ -1,14 +1,15 @@
 {
-  "Heritage Data Example": {
+  "Heritage": {
+		"scope": "typescript",
     "prefix": "h",
     "body": [
       "{",
-      "  id: ${1:201},",
+      "  id: ${1:1},",
       "  name: '${2:世界遺産名}',",
-      "  countries: ['${3:日本}'],",
+      "  countries: [${3}],",
       "  heritageType: '${4|文化,自然,複合|}',",
-      "  inscriptionYear: ${5:2000},",
-      "  criteria: [${6|'i','ii','iii','iv','v','vi','vii','viii','ix','x'|}],",
+      "  inscriptionYear: ${5:1978},",
+      "  criteria: [${6}],",
       "  attributes: [${7}],",
       "  keywords: [${8}]",
       "}"
@@ -16,21 +17,27 @@
     "description": "世界遺産データのサンプルオブジェクト（attributes 選択可, criteria i-x形式）"
   },
 
-  "Heritage Array Example": {
-    "prefix": "a",
+  "Chapter Example": {
+		"scope": "typescript",
+    "prefix": "c",
     "body": [
-      "const data: Heritage[] = [",
-      "  ${1:/* ここにHeritageオブジェクトを追加 */}",
-      "];"
+      "export const chapter$TM_FILENAME_BASE: Chapter = {",
+			"  id: $TM_FILENAME_BASE,",
+			"  title: '$1',",
+			"  heritages: [",
+			"    $2",
+			"  ],",
+			"};"
     ],
     "description": "Heritage型の配列テンプレート"
   },
 
   "Keyword": {
-	"prefix": "k",
-	"body": [
-		"{ text: '${1}', important: ${2|true,false|} },"
-	],
-	"description": "Heritageのキーワード"
+		"scope": "typescript",
+		"prefix": "k",
+		"body": [
+			"{ text: '${1}', important: ${2|true,false|} },"
+		],
+		"description": "Heritageのキーワード"
   }
 }
