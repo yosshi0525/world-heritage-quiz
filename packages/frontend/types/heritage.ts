@@ -14,6 +14,8 @@ export type Criteria =
 	| "ix"
 	| "x";
 
+type Attribute = "負の遺産" | "文化的景観" | "危機遺産";
+
 type Keyword = {
 	text: string;
 	important: boolean;
@@ -26,12 +28,6 @@ export type Heritage = {
 	heritageType: HeritageType;
 	inscriptionYear: number;
 	criteria: Criteria[];
-	attributes: (
-		| "負の遺産"
-		| "文化的景観"
-		| "危機遺産"
-		| "シリアルサイト"
-		| "トランスバウンダリー"
-	)[];
+	attributes: Attribute[];
 	keywords: Keyword[];
 };
