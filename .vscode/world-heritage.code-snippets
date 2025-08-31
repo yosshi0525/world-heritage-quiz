@@ -7,10 +7,10 @@
       "  id: ${1:1},",
       "  name: '${2:世界遺産名}',",
       "  countries: [${3}],",
-      "  heritageType: '${4|文化,自然,複合|}',",
-      "  inscriptionYear: ${5:1978},",
+      "  heritageType: '${4|自然,文化,複合|}',",
+      "  inscriptionYear: ${5},",
       "  criteria: [${6}],",
-      "  attributes: [${7}],",
+      "  attributes: [],",
       "  keywords: [${8}]",
       "}"
     ],
@@ -32,11 +32,20 @@
     "description": "Heritage型の配列テンプレート"
   },
 
+  "Important Keyword": {
+		"scope": "typescript",
+		"prefix": "ki",
+		"body": [
+			"{ text: '${1}', important: true },"
+		],
+		"description": "Heritageの重要キーワード"
+  },
+
   "Keyword": {
 		"scope": "typescript",
 		"prefix": "k",
 		"body": [
-			"{ text: '${1}', important: ${2|true,false|} },"
+			"{ text: '${1}', important: false },"
 		],
 		"description": "Heritageのキーワード"
   }

@@ -1,0 +1,100 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter28: Chapter = {
+	id: 28,
+	title: "未来への教訓",
+	heritages: [
+		{
+			id: 1,
+			name: "モスタル旧市街の石橋と周辺",
+			countries: ["ボスニア・ヘルツェゴビナ"],
+			heritageType: "文化",
+			inscriptionYear: 2005,
+			criteria: ["vi"],
+			attributes: ["負の遺産"],
+			keywords: [
+				{ text: "スターリ・モスト（古い橋）", important: true },
+				{ text: "ボスニア・ヘルツェゴビナ紛争", important: false },
+				{ text: "民族和解の象徴", important: true },
+			],
+		},
+		{
+			id: 2,
+			name: "オーストラリアの囚人収容所遺跡群",
+			countries: ["オーストラリア"],
+			heritageType: "文化",
+			inscriptionYear: 2010,
+			criteria: ["iv", "vi"],
+			attributes: ["負の遺産"],
+			keywords: [
+				{ text: "先住民であるアボリジニは居住地を追われる", important: true },
+				{ text: "囚人の労働力を利用した植民地拡大政策", important: false },
+			],
+		},
+		{
+			id: 3,
+			name: "アウシュヴィッツ・ビルケナウ：ナチス・ドイツの強制絶滅収容所（１９４０-１９４５）",
+			countries: ["ポーランド"],
+			heritageType: "文化",
+			inscriptionYear: 1979,
+			criteria: ["vi"],
+			attributes: [],
+			keywords: [
+				{ text: "ナチス・ドイツ", important: false },
+				{ text: "ホロコースト", important: true },
+			],
+		},
+		{
+			id: 4,
+			name: "ビキニ環礁-核実験場となった海",
+			countries: ["マーシャル"],
+			heritageType: "文化",
+			inscriptionYear: 2010,
+			criteria: ["iv", "vi"],
+			attributes: ["負の遺産"],
+			keywords: [
+				{ text: "ブラボー・クレーター", important: true },
+				{ text: "第五福竜丸", important: false },
+			],
+		},
+		{
+			id: 5,
+			name: "バーミヤン渓谷の文化的景観と古代遺跡群",
+			countries: ["アフガニスタン"],
+			heritageType: "文化",
+			inscriptionYear: 2003,
+			criteria: ["i", "ii", "iii", "iv", "vi"],
+			attributes: ["文化的景観", "危機遺産", "負の遺産"],
+			keywords: [
+				{ text: "ガンダーラ美術", important: true },
+				{ text: "タリバン政権", important: false },
+			],
+		},
+		{
+			id: 6,
+			name: "円形都市ハトラ",
+			countries: ["イラク"],
+			heritageType: "文化",
+			inscriptionYear: 1985,
+			criteria: ["ii", "iii", "iv", "vi"],
+			attributes: ["危機遺産", "負の遺産"],
+			keywords: [
+				{ text: "パルティア王国", important: true },
+				{ text: "IS（イスラム国）", important: false },
+			],
+		},
+		{
+			id: 7,
+			name: "クンタ・キンテ島と関連遺跡群",
+			countries: ["ガンビア"],
+			heritageType: "文化",
+			inscriptionYear: 2003,
+			criteria: ["iii", "vi"],
+			attributes: [],
+			keywords: [
+				{ text: "ゴレ島と並ぶ奴隷貿易の重要拠点", important: true },
+				{ text: "アレックス・ヘイリー", important: false },
+			],
+		},
+	],
+};

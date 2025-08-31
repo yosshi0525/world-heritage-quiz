@@ -1,0 +1,66 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter34: Chapter = {
+	id: 34,
+	title: "森林・熱帯雨林",
+	heritages: [
+		{
+			id: 1,
+			name: "スリランカ中央高地",
+			countries: ["スリランカ"],
+			heritageType: "自然",
+			inscriptionYear: 2010,
+			criteria: ["ix", "x"],
+			attributes: [],
+			keywords: [
+				{ text: "ホートン・プレインズ国立公園", important: true },
+				{ text: "世界的にも希少な山地雨林", important: true },
+				{ text: "ニシカオムラサキラングール", important: false },
+			],
+		},
+		{
+			id: 2,
+			name: "オーストラリアのゴンドワナ雨林",
+			countries: ["オーストラリア"],
+			heritageType: "自然",
+			inscriptionYear: 1986,
+			criteria: ["viii", "ix", "x"],
+			attributes: [],
+			keywords: [
+				{ text: "ゴンドワナ大陸の動植物相", important: true },
+				{ text: "世界最大級の多雨林帯", important: true },
+				{ text: "ナンキョクブナ", important: false },
+			],
+		},
+		{
+			id: 3,
+			name: "ニュングウエ国立公園",
+			countries: ["ルワンダ"],
+			heritageType: "自然",
+			inscriptionYear: 2023,
+			criteria: ["x"],
+			attributes: [],
+			keywords: [{ text: "ヒガシチンパンジー", important: true }],
+		},
+		{
+			id: 4,
+			name: "レッドウッド国立・州立公園群",
+			countries: ["アメリカ"],
+			heritageType: "自然",
+			inscriptionYear: 1980,
+			criteria: ["vii", "ix"],
+			attributes: [],
+			keywords: [{ text: "レッドウッド保護連盟", important: true }],
+		},
+		{
+			id: 5,
+			name: "ピマチオウィン・アキ",
+			countries: ["カナダ"],
+			heritageType: "複合",
+			inscriptionYear: 2018,
+			criteria: ["iii", "vi", "ix"],
+			attributes: ["文化的景観"],
+			keywords: [{ text: "文化と自然との調和が評価", important: true }],
+		},
+	],
+};

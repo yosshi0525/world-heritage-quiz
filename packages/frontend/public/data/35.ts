@@ -1,0 +1,66 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter35: Chapter = {
+	id: 35,
+	title: "草原",
+	heritages: [
+		{
+			id: 1,
+			name: "ンゴロンゴロ自然保護区",
+			countries: ["タンザニア"],
+			heritageType: "複合",
+			inscriptionYear: 1979,
+			criteria: ["iv", "vii", "viii", "ix", "x"],
+			attributes: [],
+			keywords: [
+				{ text: "クレーター", important: false },
+				{ text: "マサイ族", important: true },
+				{ text: "オルドゥヴァイ渓谷", important: true },
+			],
+		},
+		{
+			id: 2,
+			name: "W-アルリ-ペンジャーリ国立公園群",
+			countries: ["ニジェール", "ブルキナファソ", "ベナン"],
+			heritageType: "自然",
+			inscriptionYear: 1996,
+			criteria: ["ix", "x"],
+			attributes: [],
+			keywords: [
+				{ text: "W地域公園", important: true },
+				{ text: "スーダン・サヘル・サバナ", important: false },
+				{ text: "W型に湾曲", important: true },
+			],
+		},
+		{
+			id: 3,
+			name: "西天山",
+			countries: ["ウズベキスタン", "カザフスタン", "キルギス"],
+			heritageType: "自然",
+			inscriptionYear: 2016,
+			criteria: ["x"],
+			attributes: [],
+			keywords: [{ text: "マルス・シエウェルシイ", important: true }],
+		},
+		{
+			id: 4,
+			name: "ガランバ国立公園",
+			countries: ["コンゴ民主共和国"],
+			heritageType: "自然",
+			inscriptionYear: 1980,
+			criteria: ["vii", "x"],
+			attributes: ["危機遺産"],
+			keywords: [{ text: "キタシロサイ", important: true }],
+		},
+		{
+			id: 5,
+			name: "青海フフシル（可可西里）",
+			countries: ["中国"],
+			heritageType: "自然",
+			inscriptionYear: 2017,
+			criteria: ["vii", "x"],
+			attributes: [],
+			keywords: [{ text: "チベットカモシカ", important: true }],
+		},
+	],
+};

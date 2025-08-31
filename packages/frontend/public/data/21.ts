@@ -1,0 +1,105 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter21: Chapter = {
+	id: 21,
+	title: "近代建築",
+	heritages: [
+		{
+			id: 1,
+			name: "アントニ・ガウティの作品群",
+			countries: ["スペイン"],
+			heritageType: "文化",
+			inscriptionYear: 1984,
+			criteria: ["i", "ii", "iv"],
+			attributes: [],
+			keywords: [
+				{ text: "モデルニスモ", important: false },
+				{ text: "自然のなかにすべての教科書がある", important: true },
+				{ text: "生誕のファサード", important: true },
+			],
+		},
+		{
+			id: 2,
+			name: "フランク・ロイド・ライトの20世紀の建築",
+			countries: ["アメリカ"],
+			heritageType: "文化",
+			inscriptionYear: 2019,
+			criteria: ["ii"],
+			attributes: [],
+			keywords: [
+				{ text: "有機的建築", important: true },
+				{ text: "ロビー邸", important: true },
+				{ text: "グッゲンハイム美術館", important: false },
+			],
+		},
+		{
+			id: 3,
+			name: "建築家ヴィクトール・オルタによる主な邸宅（ブリュッセル）",
+			countries: ["ベルギー"],
+			heritageType: "文化",
+			inscriptionYear: 2000,
+			criteria: ["i", "ii", "iv"],
+			attributes: [],
+			keywords: [
+				{ text: "曲線", important: false },
+				{ text: "アール・ヌーヴォーの先駆け", important: true },
+			],
+		},
+		{
+			id: 4,
+			name: "バウハウス関連遺産群：ヴァイマールとデッサウ、ベルナウ",
+			countries: ["ドイツ"],
+			heritageType: "文化",
+			inscriptionYear: 1996,
+			criteria: ["ii", "iv", "vi"],
+			attributes: [],
+			keywords: [
+				{ text: "ヴァルター・グロピウス", important: true },
+				{
+					text: "すべての造形活動の最終目標は完璧な建築にある",
+					important: false,
+				},
+			],
+		},
+		{
+			id: 5,
+			name: "スクーグスシルコゴーデンの森林墓地",
+			countries: ["スウェーデン"],
+			heritageType: "文化",
+			inscriptionYear: 1994,
+			criteria: ["ii", "iv"],
+			attributes: [],
+			keywords: [
+				{ text: "森の火葬場", important: true },
+				{ text: "不規則な自然を取り入れる設計理念", important: false },
+			],
+		},
+		{
+			id: 6,
+			name: "技術者エラディオ・ディエステの作品：アトランティーダの教会",
+			countries: ["ウルグアイ"],
+			heritageType: "文化",
+			inscriptionYear: 2021,
+			criteria: ["iv"],
+			attributes: [],
+			keywords: [
+				{ text: "地元で入手が容易なレンガ", important: false },
+				{ text: "ガウス・ヴォールト", important: true },
+			],
+		},
+		{
+			id: 7,
+			name: "ブラジリア",
+			countries: ["ブラジル"],
+			heritageType: "文化",
+			inscriptionYear: 1987,
+			criteria: ["i", "iv"],
+			attributes: [],
+			keywords: [
+				{ text: "オスカー・ニーマイヤー", important: true },
+				{ text: "ルシオ・コスタ", important: true },
+				{ text: "上空から見ると飛行機形になる", important: false },
+			],
+		},
+	],
+};

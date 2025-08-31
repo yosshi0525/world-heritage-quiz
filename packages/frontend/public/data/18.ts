@@ -1,0 +1,112 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter18: Chapter = {
+	id: 18,
+	title: "アメリカ大陸の文明",
+	heritages: [
+		{
+			id: 1,
+			name: "ティカル国立公園",
+			countries: ["グアテマラ"],
+			heritageType: "複合",
+			inscriptionYear: 1979,
+			criteria: ["i", "iii", "iv", "ix", "x"],
+			attributes: [],
+			keywords: [
+				{ text: "マヤ文明", important: true },
+				{ text: "３９人の王を輩出した強大な都市", important: false },
+				{ text: "ア・カカウ王", important: true },
+			],
+		},
+		{
+			id: 2,
+			name: "ティワナク：ティワナク文化の宗教的・政治的中心地",
+			countries: ["ボリビア"],
+			heritageType: "文化",
+			inscriptionYear: 2000,
+			criteria: ["iii", "iv"],
+			attributes: [],
+			keywords: [{ text: "太陽の門", important: true }],
+		},
+		{
+			id: 3,
+			name: "ポヴァティ・ポイントの記念碑的土塁群",
+			countries: ["アメリカ"],
+			heritageType: "文化",
+			inscriptionYear: 2014,
+			criteria: ["iii"],
+			attributes: [],
+			keywords: [
+				{
+					text: "狩猟採集民族が居住や儀式の場として使用していた",
+					important: true,
+				},
+			],
+		},
+		{
+			id: 4,
+			name: "マチュ・ピチュ",
+			countries: ["ペルー"],
+			heritageType: "複合",
+			inscriptionYear: 1983,
+			criteria: ["i", "iii", "vii", "ix"],
+			attributes: [],
+			keywords: [{ text: "インティワタナ", important: true }],
+		},
+		{
+			id: 5,
+			name: "聖都カラル・スペ",
+			countries: ["ペルー"],
+			heritageType: "文化",
+			inscriptionYear: 2009,
+			criteria: ["ii", "iii", "iv"],
+			attributes: [],
+			keywords: [
+				{ text: "キープ", important: true },
+				{ text: "強力な宗教指導者がいた", important: false },
+			],
+		},
+		{
+			id: 6,
+			name: "テオティワカンの古代都市",
+			countries: ["メキシコ"],
+			heritageType: "文化",
+			inscriptionYear: 1987,
+			criteria: ["i", "ii", "iii", "iv", "vi"],
+			attributes: [],
+			keywords: [
+				{ text: "タルー・タブレロ式", important: false },
+				{ text: "太陽のピラミッド", important: true },
+			],
+		},
+		{
+			id: 7,
+			name: "コパンのマヤ遺跡",
+			countries: ["ホンジュラス"],
+			heritageType: "文化",
+			inscriptionYear: 1980,
+			criteria: ["iv", "vi"],
+			attributes: [],
+			keywords: [
+				{ text: "ワシャクラフン・ウバーフ・カウィル王", important: true },
+				{
+					text: "他のマヤ遺跡と比べて石碑などに刻まれたマヤ文字の量が多い",
+					important: false,
+				},
+			],
+		},
+		{
+			id: 8,
+			name: "パレンケの古代都市と国立公園",
+			countries: ["メキシコ"],
+			heritageType: "文化",
+			inscriptionYear: 1987,
+			criteria: ["i", "ii", "iii", "iv"],
+			attributes: [],
+			keywords: [
+				{ text: "碑文の神殿", important: true },
+				{ text: "パカル王", important: false },
+			],
+		},
+	],
+};

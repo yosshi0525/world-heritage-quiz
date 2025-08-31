@@ -29,13 +29,12 @@ export default function Page({ params }: Props) {
 
 	const heritage = chapter.heritages[order[questionNumber - 1]];
 
-	const correctAnswerCount = heritage ? heritage.keywords.length : 0;
-
 	const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
 	const [selections, setSelections] = useState<string[]>([]);
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 	const [isFinished, setIsFinished] = useState(false);
+	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
 
 	useEffect(() => {
 		const allKeywords = chapter.heritages
@@ -71,6 +70,7 @@ export default function Page({ params }: Props) {
 	const handleClickAnswer = () => {
 		if (checkAnswer()) {
 			setIsCorrect(true);
+			setCorrectAnswerCount(correctAnswerCount + 1);
 		} else {
 			setIsCorrect(false);
 		}
@@ -124,7 +124,7 @@ export default function Page({ params }: Props) {
 				</div>
 
 				<p>
-					{selectedKeywords.length} / {correctAnswerCount} 選択中
+					{selectedKeywords.length} / {heritage.keywords.length} 選択中
 				</p>
 
 				<div>
@@ -133,7 +133,7 @@ export default function Page({ params }: Props) {
 					) : (
 						<Button
 							onClick={handleClickAnswer}
-							// disabled={!(selectedKeywords.length === correctAnswerCount)}
+							// disabled={!(selectedKeywords.length === heritage.keywords.length )}
 						>
 							答え合わせ
 						</Button>
@@ -141,9 +141,13 @@ export default function Page({ params }: Props) {
 				</div>
 			</div>
 
+			{correctAnswerCount}
+
 			{showAnswer && <p>{isCorrect ? "正解" : "不正解"}</p>}
 
-			{isFinished && <p>終了</p>}
+			{isFinished && (
+				<p>正答数：{correctAnswerCount / chapter.heritages.length}</p>
+			)}
 		</div>
 	);
 }

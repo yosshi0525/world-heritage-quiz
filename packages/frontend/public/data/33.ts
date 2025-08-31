@@ -1,0 +1,78 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter33: Chapter = {
+	id: 33,
+	title: "湖・湿地帯",
+	heritages: [
+		{
+			id: 1,
+			name: "パンタナル自然保護区",
+			countries: ["ブラジル"],
+			heritageType: "自然",
+			inscriptionYear: 2000,
+			criteria: ["vii", "ix", "x"],
+			attributes: [],
+			keywords: [
+				{ text: "世界最大の炭水湿地であるパンタナル湿原", important: true },
+				{ text: "水鳥の繁殖地", important: true },
+				{ text: "一時に多くの小さな湖ができる", important: false },
+			],
+		},
+		{
+			id: 2,
+			name: "エヴァーグレーズ国立公園",
+			countries: ["アメリカ"],
+			heritageType: "自然",
+			inscriptionYear: 1979,
+			criteria: ["viii", "ix", "x"],
+			attributes: ["危機遺産"],
+			keywords: [
+				{ text: "全米最大の湿原地域", important: false },
+				{ text: "ハンモック", important: true },
+			],
+		},
+		{
+			id: 3,
+			name: "ジュジ国立鳥類保護区",
+			countries: ["セネガル"],
+			heritageType: "自然",
+			inscriptionYear: 1981,
+			criteria: ["vii", "x"],
+			attributes: [],
+			keywords: [
+				{ text: "セネガル川河口", important: false },
+				{ text: "モモイロペリカン", important: true },
+			],
+		},
+		{
+			id: 4,
+			name: "オカバンゴ・デルタ",
+			countries: ["ボツワナ"],
+			heritageType: "自然",
+			inscriptionYear: 2014,
+			criteria: ["vii", "ix", "x"],
+			attributes: [],
+			keywords: [{ text: "アフリカ大陸最大の内陸デルタ地帯", important: true }],
+		},
+		{
+			id: 5,
+			name: "ドナウ・デルタ",
+			countries: ["ルーマニア"],
+			heritageType: "自然",
+			inscriptionYear: 1991,
+			criteria: ["vii", "x"],
+			attributes: [],
+			keywords: [{ text: "ヨーロッパ最大の湿地帯", important: true }],
+		},
+		{
+			id: 6,
+			name: "中国の黄海・渤海湾沿岸の渡り鳥保護区",
+			countries: ["中国"],
+			heritageType: "自然",
+			inscriptionYear: 2019,
+			criteria: ["x"],
+			attributes: [],
+			keywords: [{ text: "ヘラシギ", important: true }],
+		},
+	],
+};

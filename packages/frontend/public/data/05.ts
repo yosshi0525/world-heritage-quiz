@@ -109,7 +109,7 @@ export const chapter05: Chapter = {
 		},
 		{
 			id: 9,
-			name: "マロティ - ドラーケンスベルグ公演",
+			name: "マロティ - ドラーケンスベルグ公園",
 			countries: ["南アフリカ", "レソト"],
 			heritageType: "複合",
 			inscriptionYear: 2000,

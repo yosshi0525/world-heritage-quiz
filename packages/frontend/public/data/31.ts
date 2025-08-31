@@ -1,0 +1,66 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter31: Chapter = {
+	id: 31,
+	title: "カルスト地形",
+	heritages: [
+		{
+			id: 1,
+			name: "九寨溝：歴史的・景観的重要地区",
+			countries: ["中国"],
+			heritageType: "自然",
+			inscriptionYear: 1992,
+			criteria: ["vii"],
+			attributes: [],
+			keywords: [
+				{ text: "カルスト台地", important: true },
+				{ text: "五花海", important: false },
+				{ text: "ジャイアントパンダ", important: true },
+			],
+		},
+		{
+			id: 2,
+			name: "プリトヴィツェ湖群国立公園",
+			countries: ["クロアチア"],
+			heritageType: "自然",
+			inscriptionYear: 1979,
+			criteria: ["vii", "viii", "ix"],
+			attributes: [],
+			keywords: [
+				{ text: "炭酸カルシウム", important: false },
+				{ text: "石灰華", important: true },
+				{ text: "クロアチア紛争", important: true },
+			],
+		},
+		{
+			id: 3,
+			name: "アペニン山脈北部の蒸発岩カルストと洞窟群",
+			countries: ["イタリア"],
+			heritageType: "自然",
+			inscriptionYear: 2023,
+			criteria: ["viii"],
+			attributes: [],
+			keywords: [{ text: "蒸発岩カルスト", important: true }],
+		},
+		{
+			id: 4,
+			name: "ハ・ロン湾とカット・バ諸島",
+			countries: ["ベトナム"],
+			heritageType: "自然",
+			inscriptionYear: 1994,
+			criteria: ["vii", "viii"],
+			attributes: [],
+			keywords: [{ text: "石灰岩台地の風化", important: true }],
+		},
+		{
+			id: 5,
+			name: "グランマ号上陸記念国立公園",
+			countries: ["キューバ"],
+			heritageType: "自然",
+			inscriptionYear: 1999,
+			criteria: ["vii", "viii"],
+			attributes: [],
+			keywords: [{ text: "石灰岩の海岸段丘", important: true }],
+		},
+	],
+};

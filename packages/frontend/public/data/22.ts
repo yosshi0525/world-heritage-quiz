@@ -1,0 +1,100 @@
+import type { Chapter } from "@/types/chapter";
+
+export const chapter22: Chapter = {
+	id: 22,
+	title: "十字軍と騎士団",
+	heritages: [
+		{
+			id: 1,
+			name: "バレッタの市街",
+			countries: ["マルタ"],
+			heritageType: "文化",
+			inscriptionYear: 1980,
+			criteria: ["i", "vi"],
+			attributes: [],
+			keywords: [
+				{ text: "聖ヨハネ騎士団", important: true },
+				{ text: "ジャン・パリソー・ド・ラ・バレッテ", important: true },
+				{ text: "マルタ騎士団", important: false },
+			],
+		},
+		{
+			id: 2,
+			name: "クラック・デ・シュヴァリエとカラット・サラーフ・アッディーン",
+			countries: ["シリア"],
+			heritageType: "文化",
+			inscriptionYear: 2006,
+			criteria: ["ii", "iv"],
+			attributes: ["危機遺産"],
+			keywords: [
+				{ text: "十字軍遠征時代の代表的城塞建築", important: true },
+				{ text: "サラディンの要塞", important: false },
+			],
+		},
+		{
+			id: 3,
+			name: "ロドス島の中世都市",
+			countries: ["ギリシャ"],
+			heritageType: "文化",
+			inscriptionYear: 1988,
+			criteria: ["ii", "iv", "v"],
+			attributes: [],
+			keywords: [
+				{ text: "キプロス島に代わる新たな本拠地", important: false },
+				{ text: "７つの館", important: true },
+			],
+		},
+		{
+			id: 4,
+			name: "トマールのキリスト騎士団の修道院",
+			countries: ["ポルトガル"],
+			heritageType: "文化",
+			inscriptionYear: 1983,
+			criteria: ["i", "vi"],
+			attributes: [],
+			keywords: [
+				{ text: "テンプル騎士団", important: true },
+				{ text: "キリスト騎士団", important: false },
+			],
+		},
+		{
+			id: 5,
+			name: "アッコの旧市街",
+			countries: ["イスラエル"],
+			heritageType: "文化",
+			inscriptionYear: 2001,
+			criteria: ["ii", "iii", "v"],
+			attributes: [],
+			keywords: [
+				{ text: "十字軍の遺構の上に建てられた城塞都市", important: true },
+				{ text: "オスマン帝国", important: false },
+			],
+		},
+		{
+			id: 6,
+			name: "マルボルクのドイツ騎士修道会の城",
+			countries: ["ポーランド"],
+			heritageType: "文化",
+			inscriptionYear: 1997,
+			criteria: ["ii", "iii", "iv"],
+			attributes: [],
+			keywords: [
+				{ text: "ドイツ騎士修道会", important: true },
+				{ text: "１３世紀に建設されたゴシック様式の建築物", important: false },
+			],
+		},
+		{
+			id: 7,
+			name: "カステル・デル・モンテ",
+			countries: ["イタリア"],
+			heritageType: "文化",
+			inscriptionYear: 1996,
+			criteria: ["i", "ii", "iii"],
+			attributes: [],
+			keywords: [
+				{ text: "フリードリヒ２世", important: true },
+				{ text: "八角形", important: false },
+			],
+		},
+	],
+};
