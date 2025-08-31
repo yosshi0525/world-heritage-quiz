@@ -1,19 +1,70 @@
-import { Duration, Stack, type StackProps } from "aws-cdk-lib";
-import * as sns from "aws-cdk-lib/aws-sns";
-import * as subs from "aws-cdk-lib/aws-sns-subscriptions";
-import * as sqs from "aws-cdk-lib/aws-sqs";
+import {
+	App,
+	GitHubSourceCodeProvider,
+	RedirectStatus,
+} from "@aws-cdk/aws-amplify-alpha";
+import { CfnOutput, SecretValue, Stack, type StackProps } from "aws-cdk-lib";
+import { BuildSpec } from "aws-cdk-lib/aws-codebuild";
 import type { Construct } from "constructs";
 
-export class WorldHeritageQuizStack extends Stack {
-	constructor(scope: Construct, id: string, props?: StackProps) {
-		super(scope, id, props);
+interface HostingStackProps extends StackProps {
+	readonly owner: string;
+	readonly repository: string;
+	readonly environmentVariables?: { [name: string]: string };
+}
 
-		const queue = new sqs.Queue(this, "BackendQueue", {
-			visibilityTimeout: Duration.seconds(300),
+export class AmplifyHostingStack extends Stack {
+	constructor(scope: Construct, id: string, props: HostingStackProps) {
+		super(scope, id, props);
+		const amplifyApp = new App(this, "AmplifyCDK", {
+			appName: "World Heritage Quiz",
+			sourceCodeProvider: new GitHubSourceCodeProvider({
+				owner: props.owner,
+				repository: props.repository,
+				oauthToken: SecretValue.unsafePlainText(process.env.GITHUB_TOKEN ?? ""),
+			}),
+			autoBranchDeletion: true,
+			customRules: [
+				{
+					source: "/<*>",
+					target: " /index.html",
+					status: RedirectStatus.NOT_FOUND_REWRITE,
+				},
+			],
+			environmentVariables: props.environmentVariables,
+			buildSpec: BuildSpec.fromObjectToYaml({
+				version: 1,
+				frontend: {
+					phases: {
+						preBuild: {
+							commands: [
+								"curl -fsSL https://bun.sh/install | bash",
+								'export PATH="$HOME/.bun/bin:$PATH"',
+								"bun install",
+							],
+						},
+						build: {
+							commands: ["bun run build"],
+						},
+					},
+					artifacts: {
+						baseDirectory: ".next",
+						files: ["**/*"],
+					},
+					cache: {
+						paths: ["node_modules/**/*"],
+					},
+				},
+				appRoot: "packages/frontend",
+			}),
 		});
 
-		const topic = new sns.Topic(this, "BackendTopic");
+		amplifyApp.addBranch("main", {
+			stage: "PRODUCTION",
+		});
 
-		topic.addSubscription(new subs.SqsSubscription(queue));
+		new CfnOutput(this, "appId", {
+			value: amplifyApp.appId,
+		});
 	}
 }

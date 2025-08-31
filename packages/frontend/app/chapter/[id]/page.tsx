@@ -1,5 +1,6 @@
+import { getChapter } from "@/app/quiz/[chapterId]/getChapter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heritages from "@/public/data/heritages.json";
+import { notFound } from "next/navigation";
 
 export default async function Page({
 	params,
@@ -8,6 +9,11 @@ export default async function Page({
 }) {
 	const { id } = await params;
 	const chapterName = "日本の遺産";
+	const chapter = getChapter(Number(id));
+	if (!chapter) {
+		notFound();
+	}
+	const heritages = chapter.heritages;
 
 	return (
 		<div className="font-sans flex flex-col items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20">
@@ -18,11 +24,11 @@ export default async function Page({
 			{heritages.map((heritage) => (
 				<Card key={heritage.id} className="w-xl">
 					<CardHeader>
-						<CardTitle>{heritage.name.ja}</CardTitle>
+						<CardTitle>{heritage.name}</CardTitle>
 					</CardHeader>
 					<CardContent>
-						<div>{heritage.kind}</div>
-						<div>{heritage.year}年</div>
+						<div>{heritage.heritageType}</div>
+						<div>{heritage.inscriptionYear}年</div>
 						<ul className="flex content-center gap-2">
 							{heritage.criteria.map((criteria) => (
 								<li key={criteria}>({criteria})</li>
@@ -30,7 +36,14 @@ export default async function Page({
 						</ul>
 						<ul>
 							{heritage.keywords.map((keyword) => (
-								<li key={keyword}>「{keyword}」</li>
+								<li
+									key={keyword.text}
+									className={
+										keyword.important ? "text-red-500 font-bold" : "font-bold"
+									}
+								>
+									「{keyword.text}」
+								</li>
 							))}
 						</ul>
 					</CardContent>

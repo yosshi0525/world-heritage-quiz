@@ -207,7 +207,7 @@ export const chapter02: Chapter = {
 					important: true,
 				},
 				{
-					text: "巨大古墳が作られる権力構造があることを公益相手の国々に対して示すもの",
+					text: "巨大古墳が作られる権力構造があることを交易相手の国々に対して示すもの",
 					important: true,
 				},
 			],

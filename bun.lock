@@ -17,6 +17,7 @@
       "name": "backend",
       "version": "0.1.0",
       "dependencies": {
+        "@aws-cdk/aws-amplify-alpha": "^2.213.0-alpha.0",
         "aws-cdk-lib": "2.207.0",
         "constructs": "^10.4.2",
       },
@@ -62,6 +63,8 @@
     "@aws-cdk/asset-awscli-v1": ["@aws-cdk/asset-awscli-v1@2.2.242", "", {}, "sha512-4c1bAy2ISzcdKXYS1k4HYZsNrgiwbiDzj36ybwFVxEWZXVAP0dimQTCaB9fxu7sWzEjw3d+eaw6Fon+QTfTIpQ=="],
 
     "@aws-cdk/asset-node-proxy-agent-v6": ["@aws-cdk/asset-node-proxy-agent-v6@2.1.0", "", {}, "sha512-7bY3J8GCVxLupn/kNmpPc5VJz8grx+4RKfnnJiO1LG+uxkZfANZG3RMHhE+qQxxwkyQ9/MfPtTpf748UhR425A=="],
+
+    "@aws-cdk/aws-amplify-alpha": ["@aws-cdk/aws-amplify-alpha@2.213.0-alpha.0", "", { "peerDependencies": { "aws-cdk-lib": "^2.213.0", "constructs": "^10.0.0" } }, "sha512-6AIwI5BDgRjOOBMPMGI4S3nNXqttEFa92etuacmCMm1/sXn2HTZNAvl4uhk5uOrJF+d68SXL+5gd95kEwLLTgQ=="],
 
     "@aws-cdk/cloud-assembly-schema": ["@aws-cdk/cloud-assembly-schema@45.2.0", "", { "dependencies": { "jsonschema": "~1.4.1", "semver": "^7.7.2" } }, "sha512-5TTUkGHQ+nfuUGwKA8/Yraxb+JdNUh4np24qk/VHXmrCMq+M6HfmGWfhcg/QlHA2S5P3YIamfYHdQAB4uSNLAg=="],
 

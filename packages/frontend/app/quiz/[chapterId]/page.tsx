@@ -1,15 +1,16 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Link } from "lucide-react";
 import { notFound } from "next/navigation";
-import { use, useEffect, useMemo, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { getChapter } from "./getChapter";
 
 type Props = {
 	params: Promise<{ chapterId: string }>;
 };
 
-const N = 10;
+const N = 1000;
 
 export default function Page({ params }: Props) {
 	const chapterId = Number(use(params).chapterId);
@@ -19,22 +20,23 @@ export default function Page({ params }: Props) {
 		notFound();
 	}
 
-	const order = useMemo(() => {
-		return Array.from({ length: chapter.heritages.length })
-			.map((_, i) => i)
-			.sort(() => 0.5 - Math.random());
-	}, [chapter]);
-
 	const [questionNumber, setQuestionNumber] = useState(1);
 
+	const [order, setOrder] = useState(
+		Array.from({ length: chapter.heritages.length }).map((_, i) => i),
+	);
 	const heritage = chapter.heritages[order[questionNumber - 1]];
-
 	const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
 	const [selections, setSelections] = useState<string[]>([]);
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 	const [isFinished, setIsFinished] = useState(false);
 	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		setOrder(order.sort(() => 0.5 - Math.random()));
+	}, [order]);
 
 	useEffect(() => {
 		const allKeywords = chapter.heritages
@@ -42,15 +44,16 @@ export default function Page({ params }: Props) {
 			.map((keyword) => keyword.text);
 
 		const selections = heritage.keywords.map((k) => k.text);
-		while (selections.length < N) {
+		while (selections.length < Math.min(N, allKeywords.length)) {
 			const i = Math.floor(Math.random() * allKeywords.length);
 			const next = allKeywords[i];
 			if (!selections.includes(next)) {
 				selections.push(next);
 			}
 			selections.sort(() => 0.5 - Math.random());
-			setSelections(selections);
 		}
+		setSelections(selections);
+		setLoading(false);
 	}, [chapter, heritage]);
 
 	const handleClickSelection = (keyword: string) => {
@@ -83,13 +86,21 @@ export default function Page({ params }: Props) {
 		setShowAnswer(false);
 		if (questionNumber < chapter.heritages.length) {
 			setQuestionNumber(questionNumber + 1);
+			setLoading(true);
 		} else {
 			setIsFinished(true);
 		}
 	};
 
+	if (loading) {
+		return;
+	}
+
 	return (
 		<div className="max-w-2xl p-16">
+			<p>
+				第{chapter.id}章：{chapter.title}
+			</p>
 			<p className="text-xl">Q. {questionNumber}</p>
 			<h1 className="text-2xl font-bold">{heritage.name}</h1>
 			<p>登録年: {heritage.inscriptionYear}年</p>
@@ -131,12 +142,7 @@ export default function Page({ params }: Props) {
 					{showAnswer ? (
 						<Button onClick={handleClickNext}>次へ</Button>
 					) : (
-						<Button
-							onClick={handleClickAnswer}
-							// disabled={!(selectedKeywords.length === heritage.keywords.length )}
-						>
-							答え合わせ
-						</Button>
+						<Button onClick={handleClickAnswer}>答え合わせ</Button>
 					)}
 				</div>
 			</div>
@@ -146,7 +152,12 @@ export default function Page({ params }: Props) {
 			{showAnswer && <p>{isCorrect ? "正解" : "不正解"}</p>}
 
 			{isFinished && (
-				<p>正答数：{correctAnswerCount / chapter.heritages.length}</p>
+				<p>
+					正答率：{Math.floor(correctAnswerCount / chapter.heritages.length)}
+				</p>
+			)}
+			{correctAnswerCount === chapter.heritages.length && (
+				<Link href={`quiz/${chapterId + 1}`}>次のチャプターへ</Link>
 			)}
 		</div>
 	);

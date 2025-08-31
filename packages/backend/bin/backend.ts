@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 import * as cdk from "aws-cdk-lib";
-import { WorldHeritageQuizStack } from "../lib/world-heritage-quiz-stack";
+import { AmplifyHostingStack } from "../lib/world-heritage-quiz-stack";
 
 const app = new cdk.App();
-new WorldHeritageQuizStack(app, "WorldHeritageQuiz");
+new AmplifyHostingStack(app, "WorldHeritageQuiz", {
+	owner: "yosshi0525",
+	repository: "world-heritage-quiz",
+});
