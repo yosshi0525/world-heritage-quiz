@@ -1,6 +1,7 @@
 import {
 	App,
 	GitHubSourceCodeProvider,
+	Platform,
 	RedirectStatus,
 } from "@aws-cdk/aws-amplify-alpha";
 import { CfnOutput, SecretValue, Stack, type StackProps } from "aws-cdk-lib";
@@ -34,29 +35,34 @@ export class AmplifyHostingStack extends Stack {
 			environmentVariables: props.environmentVariables,
 			buildSpec: BuildSpec.fromObjectToYaml({
 				version: 1,
-				frontend: {
-					phases: {
-						preBuild: {
-							commands: [
-								"curl -fsSL https://bun.sh/install | bash",
-								'export PATH="$HOME/.bun/bin:$PATH"',
-								"bun install",
-							],
+				applications: [
+					{
+						appRoot: "packages/frontend",
+						frontend: {
+							phases: {
+								preBuild: {
+									commands: [
+										"curl -fsSL https://bun.sh/install | bash",
+										'export PATH="$HOME/.bun/bin:$PATH"',
+										"bun install",
+									],
+								},
+								build: {
+									commands: ["bun run build"],
+								},
+							},
+							artifacts: {
+								baseDirectory: ".next",
+								files: ["**/*"],
+							},
+							cache: {
+								paths: ["node_modules/**/*"],
+							},
 						},
-						build: {
-							commands: ["bun run build"],
-						},
 					},
-					artifacts: {
-						baseDirectory: ".next",
-						files: ["**/*"],
-					},
-					cache: {
-						paths: ["node_modules/**/*"],
-					},
-				},
-				appRoot: "packages/frontend",
+				],
 			}),
+			platform: Platform.WEB_COMPUTE,
 		});
 
 		amplifyApp.addBranch("main", {

@@ -5,15 +5,18 @@ import { Link } from "lucide-react";
 import { notFound } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import { getChapter } from "./getChapter";
+import { getLevel, getSelectionCount } from "./utils";
 
 type Props = {
 	params: Promise<{ chapterId: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-const N = 1000;
-
-export default function Page({ params }: Props) {
+export default function Page({ params, searchParams }: Props) {
 	const chapterId = Number(use(params).chapterId);
+	const levelInput = use(searchParams).level;
+	const level = getLevel(levelInput);
+
 	const chapter = getChapter(chapterId);
 
 	if (!chapter) {
@@ -39,12 +42,21 @@ export default function Page({ params }: Props) {
 	}, [order]);
 
 	useEffect(() => {
-		const allKeywords = chapter.heritages
-			.flatMap((heritage) => heritage.keywords)
-			.map((keyword) => keyword.text);
+		const allKeywords = [
+			...new Set(
+				chapter.heritages
+					.flatMap((heritage) => heritage.keywords)
+					.map((keyword) => keyword.text),
+			),
+		];
+		const selectionCount = getSelectionCount(
+			level,
+			heritage.keywords.length,
+			allKeywords.length,
+		);
 
 		const selections = heritage.keywords.map((k) => k.text);
-		while (selections.length < Math.min(N, allKeywords.length)) {
+		while (selections.length < Math.min(selectionCount, allKeywords.length)) {
 			const i = Math.floor(Math.random() * allKeywords.length);
 			const next = allKeywords[i];
 			if (!selections.includes(next)) {
@@ -54,7 +66,7 @@ export default function Page({ params }: Props) {
 		}
 		setSelections(selections);
 		setLoading(false);
-	}, [chapter, heritage]);
+	}, [chapter, heritage, level]);
 
 	const handleClickSelection = (keyword: string) => {
 		if (selectedKeywords.some((k) => k === keyword)) {
@@ -97,7 +109,7 @@ export default function Page({ params }: Props) {
 	}
 
 	return (
-		<div className="max-w-2xl p-16">
+		<div className="max-w-dvw py-8 px-2">
 			<p>
 				第{chapter.id}章：{chapter.title}
 			</p>
@@ -152,9 +164,7 @@ export default function Page({ params }: Props) {
 			{showAnswer && <p>{isCorrect ? "正解" : "不正解"}</p>}
 
 			{isFinished && (
-				<p>
-					正答率：{Math.floor(correctAnswerCount / chapter.heritages.length)}
-				</p>
+				<p>正答率：{(correctAnswerCount / chapter.heritages.length) % 0.01}</p>
 			)}
 			{correctAnswerCount === chapter.heritages.length && (
 				<Link href={`quiz/${chapterId + 1}`}>次のチャプターへ</Link>

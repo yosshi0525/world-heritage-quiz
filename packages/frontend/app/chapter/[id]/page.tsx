@@ -42,7 +42,7 @@ export default async function Page({
 										keyword.important ? "text-red-500 font-bold" : "font-bold"
 									}
 								>
-									「{keyword.text}」
+									{keyword.text}
 								</li>
 							))}
 						</ul>
