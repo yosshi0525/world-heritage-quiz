@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "lucide-react";
 import { notFound } from "next/navigation";
-import { use, useEffect, useState } from "react";
+import { use, useEffect, useMemo, useState } from "react";
 import { getChapter } from "./getChapter";
 import { getLevel, getSelectionCount } from "./utils";
 
@@ -14,21 +14,15 @@ type Props = {
 
 export default function Page({ params, searchParams }: Props) {
 	const chapterId = Number(use(params).chapterId);
-	const levelInput = use(searchParams).level;
-	const level = getLevel(levelInput);
+	const level = getLevel(use(searchParams).level);
 
-	const chapter = getChapter(chapterId);
-
-	if (!chapter) {
-		notFound();
-	}
+	const chapter = getChapter(chapterId) ?? notFound();
+	const initialOrder = Array.from({ length: chapter.heritages.length }).map(
+		(_, i) => i,
+	);
 
 	const [questionNumber, setQuestionNumber] = useState(1);
-
-	const [order, setOrder] = useState(
-		Array.from({ length: chapter.heritages.length }).map((_, i) => i),
-	);
-	const heritage = chapter.heritages[order[questionNumber - 1]];
+	const [order, setOrder] = useState(initialOrder);
 	const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
 	const [selections, setSelections] = useState<string[]>([]);
 	const [showAnswer, setShowAnswer] = useState(false);
@@ -37,18 +31,23 @@ export default function Page({ params, searchParams }: Props) {
 	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
 	const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		setOrder(order.sort(() => 0.5 - Math.random()));
-	}, [order]);
-
-	useEffect(() => {
-		const allKeywords = [
+	const heritage = chapter.heritages[order[questionNumber - 1]];
+	const allKeywords = useMemo(
+		() => [
 			...new Set(
 				chapter.heritages
 					.flatMap((heritage) => heritage.keywords)
 					.map((keyword) => keyword.text),
 			),
-		];
+		],
+		[chapter],
+	);
+
+	useEffect(() => {
+		setOrder(order.sort(() => 0.5 - Math.random()));
+	}, [order]);
+
+	useEffect(() => {
 		const selectionCount = getSelectionCount(
 			level,
 			heritage.keywords.length,
@@ -66,7 +65,7 @@ export default function Page({ params, searchParams }: Props) {
 		}
 		setSelections(selections);
 		setLoading(false);
-	}, [chapter, heritage, level]);
+	}, [allKeywords, heritage, level]);
 
 	const handleClickSelection = (keyword: string) => {
 		if (selectedKeywords.some((k) => k === keyword)) {
@@ -98,7 +97,6 @@ export default function Page({ params, searchParams }: Props) {
 		setShowAnswer(false);
 		if (questionNumber < chapter.heritages.length) {
 			setQuestionNumber(questionNumber + 1);
-			setLoading(true);
 		} else {
 			setIsFinished(true);
 		}
