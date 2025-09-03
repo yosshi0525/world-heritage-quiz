@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { use, useEffect, useMemo, useState } from "react";
 import { getChapter } from "./getChapter";
@@ -41,6 +41,7 @@ export default function Page({ params, searchParams }: Props) {
 		],
 		[chapter],
 	);
+	const correctAnswerRate = correctAnswerCount / chapter.heritages.length;
 
 	useEffect(() => {
 		setOrder(order.sort(() => 0.5 - Math.random()));
@@ -100,6 +101,16 @@ export default function Page({ params, searchParams }: Props) {
 		}
 	};
 
+	const handleClickReset = () => {
+		setSelectedKeywords([]);
+		setIsCorrect(null);
+		setShowAnswer(false);
+		setCorrectAnswerCount(0);
+		setIsFinished(false);
+		setQuestionNumber(1);
+		setOrder(order.sort(() => 0.5 - Math.random()));
+	};
+
 	return (
 		<div className="max-w-dvw py-8 px-2">
 			<p>
@@ -143,7 +154,15 @@ export default function Page({ params, searchParams }: Props) {
 				</p>
 
 				<div>
-					{showAnswer ? (
+					{isFinished ? (
+						correctAnswerRate >= 0.8 ? (
+							<Link href={`${chapterId + 1}?level=${level}`}>
+								<Button>次のチャプターへ</Button>
+							</Link>
+						) : (
+							<Button onClick={handleClickReset}>やりなおす</Button>
+						)
+					) : showAnswer ? (
 						<Button onClick={handleClickNext}>次へ</Button>
 					) : (
 						<Button onClick={handleClickAnswer}>答え合わせ</Button>
@@ -155,12 +174,7 @@ export default function Page({ params, searchParams }: Props) {
 
 			{showAnswer && <p>{isCorrect ? "正解" : "不正解"}</p>}
 
-			{isFinished && (
-				<p>正答率：{(correctAnswerCount / chapter.heritages.length) % 0.01}</p>
-			)}
-			{correctAnswerCount === chapter.heritages.length && (
-				<Link href={`quiz/${chapterId + 1}`}>次のチャプターへ</Link>
-			)}
+			{isFinished && <p>正答率：{correctAnswerRate * 100}%</p>}
 		</div>
 	);
 }
