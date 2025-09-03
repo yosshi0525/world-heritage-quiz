@@ -29,7 +29,6 @@ export default function Page({ params, searchParams }: Props) {
 	const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 	const [isFinished, setIsFinished] = useState(false);
 	const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
-	const [loading, setLoading] = useState(true);
 
 	const heritage = chapter.heritages[order[questionNumber - 1]];
 	const allKeywords = useMemo(
@@ -64,7 +63,6 @@ export default function Page({ params, searchParams }: Props) {
 			selections.sort(() => 0.5 - Math.random());
 		}
 		setSelections(selections);
-		setLoading(false);
 	}, [allKeywords, heritage, level]);
 
 	const handleClickSelection = (keyword: string) => {
@@ -101,10 +99,6 @@ export default function Page({ params, searchParams }: Props) {
 			setIsFinished(true);
 		}
 	};
-
-	if (loading) {
-		return;
-	}
 
 	return (
 		<div className="max-w-dvw py-8 px-2">
