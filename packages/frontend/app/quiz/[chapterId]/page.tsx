@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Settings } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { use, useEffect, useMemo, useState } from "react";
@@ -130,7 +131,12 @@ export default function Page({ params }: Props) {
 
 	return (
 		<div className="max-w-dvw py-8 px-2">
-			<Link href={`/quiz?level=${level}`}>戻る</Link>
+			<div className="flex justify-between">
+				<Link href={`/quiz?level=${level}`}>戻る</Link>
+				<Link href="/quiz/settings">
+					<Settings />
+				</Link>
+			</div>
 			<p>{level}</p>
 			<p>
 				第{chapter.id}章：{chapter.title}

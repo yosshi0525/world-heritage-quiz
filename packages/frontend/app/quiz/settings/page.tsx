@@ -1,13 +1,15 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { use } from "react";
 import { LevelContext } from "../LevelContext";
 
 export default function SettingsPage() {
 	const { level, setLevel } = use(LevelContext);
+	const router = useRouter();
 
 	const selections = [
 		{ value: "tutorial", label: "チュートリアル" },
@@ -22,8 +24,8 @@ export default function SettingsPage() {
 	};
 
 	return (
-		<div>
-			<h2>難易度</h2>
+		<div className="flex flex-col p-5 gap-5">
+			<h2 className="font-bold">難易度</h2>
 			<RadioGroup defaultValue={level}>
 				{selections.map(({ value, label }) => (
 					<div key={value} className="flex items-center space-x-2">
@@ -33,7 +35,7 @@ export default function SettingsPage() {
 				))}
 			</RadioGroup>
 
-			<Link href="/quiz">戻る</Link>
+			<Button onClick={() => router.back()}>戻る</Button>
 		</div>
 	);
 }

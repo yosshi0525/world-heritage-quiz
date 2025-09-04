@@ -1,5 +1,6 @@
 "use client";
 
+import { Settings } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -9,6 +10,10 @@ export default function QuizPage() {
 
 	return (
 		<div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center w-full min-h-screen p-8 pb-20 gap-6 sm:p-20">
+			<Link href="/quiz/settings">
+				<Settings />
+			</Link>
+
 			{chapters.map((chapter) => (
 				<Link key={chapter} href={`quiz/${chapter}?${searchParams.toString()}`}>
 					第{chapter}章
