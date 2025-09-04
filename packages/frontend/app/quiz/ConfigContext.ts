@@ -3,9 +3,13 @@ import type { Level } from "./[chapterId]/utils";
 
 export type Config = {
 	level: Level;
+	showCountries: boolean;
 };
 
 export const ConfigContext = createContext<{
 	config: Config;
 	setConfig: (config: Config) => void;
-}>({ config: { level: "normal" }, setConfig: (_config: Config) => {} });
+}>({
+	config: { level: "normal", showCountries: true },
+	setConfig: (_config: Config) => {},
+});

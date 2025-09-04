@@ -25,6 +25,7 @@ export default function Page({ params }: Props) {
 	);
 
 	const [questionNumber, setQuestionNumber] = useState(1);
+	const [initialized, setInitialized] = useState(false);
 	const [order, setOrder] = useState(initialOrder);
 	const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
 	const [selections, setSelections] = useState<string[]>([]);
@@ -48,6 +49,7 @@ export default function Page({ params }: Props) {
 
 	useEffect(() => {
 		setOrder(order.sort(() => 0.5 - Math.random()));
+		setInitialized(true);
 	}, [order]);
 
 	useEffect(() => {
@@ -130,6 +132,8 @@ export default function Page({ params }: Props) {
 		}
 		return <Button onClick={handleClickAnswer}>答え合わせ</Button>;
 	}
+
+	if (!initialized) return;
 
 	return (
 		<div className="max-w-dvw py-8 px-2">

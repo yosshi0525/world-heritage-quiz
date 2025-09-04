@@ -4,7 +4,10 @@ import { type PropsWithChildren, useEffect, useState } from "react";
 import { type Config, ConfigContext } from "./ConfigContext";
 
 export default function Layout({ children }: PropsWithChildren) {
-	const [config, setConfig] = useState<Config>({ level: "normal" });
+	const [config, setConfig] = useState<Config>({
+		level: "normal",
+		showCountries: false,
+	});
 
 	// マウント時に sessionStorage から復元
 	useEffect(() => {
