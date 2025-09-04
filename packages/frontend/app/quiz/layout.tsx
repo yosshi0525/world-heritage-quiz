@@ -1,27 +1,29 @@
 "use client";
 
 import { type PropsWithChildren, useEffect, useState } from "react";
-import { LevelContext } from "./LevelContext";
-import type { Level } from "./[chapterId]/utils";
+import { type Config, ConfigContext } from "./ConfigContext";
 
 export default function Layout({ children }: PropsWithChildren) {
-	const [level, setLevel] = useState<Level>("normal");
+	const [config, setConfig] = useState<Config>({ level: "normal" });
 
 	// マウント時に sessionStorage から復元
 	useEffect(() => {
-		const saved = sessionStorage.getItem("level") as Level | null;
-		if (saved) setLevel(saved);
+		const configString = sessionStorage.getItem("config");
+		if (configString) {
+			const config = JSON.parse(configString) as Config;
+			setConfig(config);
+		}
 	}, []);
 
 	// 値が変わるたびに保存
-	const updateLevel = (level: Level) => {
-		setLevel(level);
-		sessionStorage.setItem("level", level);
+	const updateConfig = (config: Config) => {
+		setConfig(config);
+		sessionStorage.setItem("config", JSON.stringify(config));
 	};
 
 	return (
-		<LevelContext value={{ level, setLevel: updateLevel }}>
+		<ConfigContext value={{ config, setConfig: updateConfig }}>
 			{children}
-		</LevelContext>
+		</ConfigContext>
 	);
 }

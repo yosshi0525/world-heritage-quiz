@@ -5,7 +5,7 @@ import { Settings } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { use, useEffect, useMemo, useState } from "react";
-import { LevelContext } from "../LevelContext";
+import { ConfigContext } from "../ConfigContext";
 import { getChapter } from "./getChapter";
 import { getSelectionCount } from "./utils";
 
@@ -15,7 +15,9 @@ type Props = {
 
 export default function Page({ params }: Props) {
 	const chapterId = Number(use(params).chapterId);
-	const { level } = use(LevelContext);
+	const {
+		config: { level },
+	} = use(ConfigContext);
 
 	const chapter = getChapter(chapterId) ?? notFound();
 	const initialOrder = Array.from({ length: chapter.heritages.length }).map(
