@@ -1,7 +1,7 @@
 const levels = ["tutorial", "easy", "normal", "hard", "max"] as const;
-type Level = (typeof levels)[number];
+export type Level = (typeof levels)[number];
 
-export function getLevel(input: string | string[] | undefined): Level {
+export function getLevel(input: string | null): Level {
 	if (input === undefined || Array.isArray(input)) {
 		return "normal";
 	}

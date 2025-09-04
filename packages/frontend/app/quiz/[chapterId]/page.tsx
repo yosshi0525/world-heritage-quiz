@@ -4,17 +4,17 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { use, useEffect, useMemo, useState } from "react";
+import { LevelContext } from "../LevelContext";
 import { getChapter } from "./getChapter";
-import { getLevel, getSelectionCount } from "./utils";
+import { getSelectionCount } from "./utils";
 
 type Props = {
 	params: Promise<{ chapterId: string }>;
-	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export default function Page({ params, searchParams }: Props) {
+export default function Page({ params }: Props) {
 	const chapterId = Number(use(params).chapterId);
-	const level = getLevel(use(searchParams).level);
+	const { level } = use(LevelContext);
 
 	const chapter = getChapter(chapterId) ?? notFound();
 	const initialOrder = Array.from({ length: chapter.heritages.length }).map(
@@ -111,8 +111,27 @@ export default function Page({ params, searchParams }: Props) {
 		setOrder(order.sort(() => 0.5 - Math.random()));
 	};
 
+	function renderButton() {
+		if (isFinished) {
+			if (correctAnswerCount >= 0.8) {
+				return (
+					<Link href={`${chapterId + 1}?level=${level}`}>
+						<Button>次のチャプターへ</Button>
+					</Link>
+				);
+			}
+			return <Button onClick={handleClickReset}>やりなおす</Button>;
+		}
+		if (showAnswer) {
+			return <Button onClick={handleClickNext}>次へ</Button>;
+		}
+		return <Button onClick={handleClickAnswer}>答え合わせ</Button>;
+	}
+
 	return (
 		<div className="max-w-dvw py-8 px-2">
+			<Link href={`/quiz?level=${level}`}>戻る</Link>
+			<p>{level}</p>
 			<p>
 				第{chapter.id}章：{chapter.title}
 			</p>
@@ -153,21 +172,7 @@ export default function Page({ params, searchParams }: Props) {
 					{selectedKeywords.length} / {heritage.keywords.length} 選択中
 				</p>
 
-				<div>
-					{isFinished ? (
-						correctAnswerRate >= 0.8 ? (
-							<Link href={`${chapterId + 1}?level=${level}`}>
-								<Button>次のチャプターへ</Button>
-							</Link>
-						) : (
-							<Button onClick={handleClickReset}>やりなおす</Button>
-						)
-					) : showAnswer ? (
-						<Button onClick={handleClickNext}>次へ</Button>
-					) : (
-						<Button onClick={handleClickAnswer}>答え合わせ</Button>
-					)}
-				</div>
+				<div>{renderButton()}</div>
 			</div>
 
 			{correctAnswerCount}

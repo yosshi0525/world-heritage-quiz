@@ -9,10 +9,12 @@ import Link from "next/link";
 export default function AppSidebar() {
 	return (
 		<Sidebar>
-			<SidebarHeader>世界遺産クイズ</SidebarHeader>
+			<SidebarHeader className="text-2xl font-bold">
+				世界遺産クイズ
+			</SidebarHeader>
 			<SidebarContent>
 				<SidebarGroup>
-					<Link href={{ pathname: "/quiz" }}>日本の遺産</Link>
+					<Link href={{ pathname: "/quiz" }}>クイズ</Link>
 				</SidebarGroup>
 			</SidebarContent>
 		</Sidebar>
