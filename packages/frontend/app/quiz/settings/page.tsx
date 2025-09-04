@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 import { LevelContext } from "../LevelContext";
+import type { Level } from "../[chapterId]/utils";
 
 export default function SettingsPage() {
 	const { level, setLevel } = use(LevelContext);
@@ -19,8 +20,9 @@ export default function SettingsPage() {
 		{ value: "max", label: "マックス" },
 	] as const;
 
-	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		setLevel(e.target.value);
+	const handleClick: React.FormEventHandler<HTMLButtonElement> = (e) => {
+		const level = e.currentTarget.value as Level;
+		setLevel(level);
 	};
 
 	return (
@@ -29,7 +31,7 @@ export default function SettingsPage() {
 			<RadioGroup defaultValue={level}>
 				{selections.map(({ value, label }) => (
 					<div key={value} className="flex items-center space-x-2">
-						<RadioGroupItem value={value} id={value} onClick={handleClick} />
+						<RadioGroupItem value={value} id={value} onChange={handleClick} />
 						<Label htmlFor={value}>{label}</Label>
 					</div>
 				))}
