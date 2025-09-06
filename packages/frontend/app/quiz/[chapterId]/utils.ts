@@ -9,7 +9,7 @@ export function getLevel(input: string | null): Level {
 	return levels.find((level) => level === input) ?? "normal";
 }
 
-export function getSelectionCount(
+function getDefaultSelectionCount(
 	level: Level,
 	min: number,
 	max: number,
@@ -28,6 +28,15 @@ export function getSelectionCount(
 		default:
 			unreachable(level);
 	}
+}
+
+export function getSelectionCount(
+	level: Level,
+	min: number,
+	max: number,
+): number {
+	const defaultCount = getDefaultSelectionCount(level, min, max);
+	return Math.min(defaultCount, max);
 }
 
 function unreachable(x: never): never {
