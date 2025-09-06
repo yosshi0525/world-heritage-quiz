@@ -54,7 +54,7 @@ export default function Page({ params }: Props) {
 		if (isFinished) {
 			if (correctAnswerCount >= 0.8) {
 				return (
-					<Link href={`${chapterId + 1}?level=${level}`}>
+					<Link href={`${chapterId + 1}`}>
 						<Button>次のチャプターへ</Button>
 					</Link>
 				);
