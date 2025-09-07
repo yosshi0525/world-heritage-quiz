@@ -19,7 +19,9 @@ export default function Page({ params }: Props) {
 		config: { level },
 	} = use(ConfigContext);
 
-	const chapter = getChapter(chapterId) ?? notFound();
+	const chapter = getChapter(chapterId);
+
+	if (chapter == null) notFound();
 
 	const questions = useMemo(
 		() =>
@@ -103,7 +105,7 @@ export default function Page({ params }: Props) {
 				<div className="flex gap-2 flex-wrap items-center grow">
 					{selections.map((selection) => (
 						<Button
-							key={selection}
+							key={`${questionNumber}-${selection}`}
 							type="button"
 							onClick={() => {
 								handleClickSelection(selection);
