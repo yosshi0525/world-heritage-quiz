@@ -68,9 +68,9 @@ export default function Page({ params }: Props) {
 	}
 
 	return (
-		<div className="max-w-dvw py-8 px-2">
+		<div className="w-dvw py-8 px-2">
 			<div className="flex justify-between">
-				<Link href={`/quiz?level=${level}`}>戻る</Link>
+				<Link href="/quiz">戻る</Link>
 				<Link href="/quiz/settings">
 					<Settings />
 				</Link>

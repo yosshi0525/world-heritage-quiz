@@ -40,7 +40,7 @@ export default function SettingsPage() {
 
 	return (
 		<div>
-			<div className="flex flex-col p-5 gap-5">
+			<div className="w-dvw flex flex-col p-5 gap-5">
 				<h2 className="font-bold">難易度</h2>
 				<RadioGroup defaultValue={config.level}>
 					{selections.map(({ value, label }) => (
