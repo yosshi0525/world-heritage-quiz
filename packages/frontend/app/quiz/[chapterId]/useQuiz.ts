@@ -41,7 +41,7 @@ export function useQuiz<T>(questions: Question<T>[], level: Level) {
 			allKeywords.length,
 		);
 
-		const selections = question.keywords;
+		const selections = [...question.keywords];
 		while (selections.length < selectionCount) {
 			const i = Math.floor(Math.random() * allKeywords.length);
 			const next = allKeywords[i];

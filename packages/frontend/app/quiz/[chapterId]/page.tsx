@@ -50,9 +50,24 @@ export default function Page({ params }: Props) {
 
 	if (!initialized) return;
 
+	function getSelectionButtonBorderColor(selection: string) {
+		const borderColor = {
+			default: "border-transparent",
+			correct: "border-green-500",
+			incorrect: "border-red-500",
+		};
+
+		if (!showAnswer) return borderColor.default;
+		if (!keywords.includes(selection)) return borderColor.default;
+
+		return selectedKeywords.includes(selection)
+			? borderColor.correct
+			: borderColor.incorrect;
+	}
+
 	function renderButton() {
 		if (isFinished) {
-			if (correctAnswerCount >= 0.8) {
+			if (correctAnswerRate >= 0.8) {
 				return (
 					<Link href={`${chapterId + 1}`}>
 						<Button>次のチャプターへ</Button>
@@ -96,13 +111,7 @@ export default function Page({ params }: Props) {
 							variant={
 								selectedKeywords.includes(selection) ? "secondary" : "default"
 							}
-							className={`max-w-full whitespace-normal break-words leading-snug text-justify py-1 border-2 h-auto ${
-								showAnswer && keywords.includes(selection)
-									? selectedKeywords.includes(selection)
-										? "border-green-500"
-										: "border-red-500"
-									: "border-transparent"
-							}`}
+							className={`max-w-full whitespace-normal break-words leading-snug text-justify py-1 border-2 h-auto ${getSelectionButtonBorderColor(selection)}`}
 						>
 							{selection}
 						</Button>
