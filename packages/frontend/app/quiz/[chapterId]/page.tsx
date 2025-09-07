@@ -31,7 +31,7 @@ export default function Page({ params }: Props) {
 	);
 
 	const {
-		question: { item: heritage },
+		question: { item: heritage, keywords },
 		questionNumber,
 		initialized,
 		selectedKeywords,
@@ -96,16 +96,13 @@ export default function Page({ params }: Props) {
 							variant={
 								selectedKeywords.includes(selection) ? "secondary" : "default"
 							}
-							className={
-								showAnswer &&
-								heritage.keywords
-									.map((keyword) => keyword.text)
-									.includes(selection)
+							className={`max-w-full whitespace-normal break-words leading-snug text-justify py-1 border-2 h-auto ${
+								showAnswer && keywords.includes(selection)
 									? selectedKeywords.includes(selection)
-										? "border-2 border-green-500"
-										: "border-2 border-red-500"
-									: "border-2 border-transparent"
-							}
+										? "border-green-500"
+										: "border-red-500"
+									: "border-transparent"
+							}`}
 						>
 							{selection}
 						</Button>
