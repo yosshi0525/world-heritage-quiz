@@ -1,11 +1,9 @@
-const levels = ["tutorial", "easy", "normal", "hard", "max"] as const;
+import { levels, selectionCount } from "@/config/level";
+import { unreachable } from "@/utils/panic";
+
 export type Level = (typeof levels)[number];
 
 export function getLevel(input: string | null): Level {
-	if (input === undefined || Array.isArray(input)) {
-		return "normal";
-	}
-	const levels: Level[] = ["tutorial", "easy", "normal", "hard", "max"];
 	return levels.find((level) => level === input) ?? "normal";
 }
 
@@ -18,11 +16,11 @@ function getDefaultSelectionCount(
 		case "tutorial":
 			return min;
 		case "easy":
-			return 5;
+			return selectionCount.easy;
 		case "normal":
-			return 10;
+			return selectionCount.normal;
 		case "hard":
-			return 20;
+			return selectionCount.hard;
 		case "max":
 			return max;
 		default:
@@ -37,8 +35,4 @@ export function getSelectionCount(
 ): number {
 	const defaultCount = getDefaultSelectionCount(level, min, max);
 	return Math.min(defaultCount, max);
-}
-
-function unreachable(x: never): never {
-	throw new Error(`Unreachable value: ${x}`);
 }
