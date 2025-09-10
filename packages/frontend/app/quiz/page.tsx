@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function QuizPage() {
 	return (
-		<div className="w-dvw flex flex-col items-center justify-items-center min-h-screen p-8 pb-20 gap-6 sm:p-20">
+		<div className="flex flex-col items-center justify-items-center min-h-screen p-8 pb-20 gap-6 sm:p-20">
 			<Link className="w-full" href="/quiz/settings">
 				<Settings />
 			</Link>

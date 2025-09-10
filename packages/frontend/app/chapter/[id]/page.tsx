@@ -2,38 +2,40 @@ import { getChapter } from "@/app/quiz/[chapterId]/getChapter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { notFound } from "next/navigation";
 
-export default async function Page({
-	params,
-}: {
+type Props = {
 	params: Promise<{ id: string }>;
-}) {
+};
+
+export default async function Page({ params }: Props) {
 	const { id } = await params;
-	const chapterName = "日本の遺産";
 	const chapter = getChapter(Number(id));
 	if (!chapter) {
 		notFound();
 	}
-	const heritages = chapter.heritages;
 
 	return (
-		<div className="font-sans flex flex-col items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20">
-			<h1 className="text-4xl font-bold">
-				{id}. {chapterName}
+		<div className="flex flex-col items-center justify-items-center min-h-screen p-4 pb-20 gap-4 sm:p-20">
+			<h1 className="text-2xl font-bold">
+				{id}. {chapter.title}
 			</h1>
 
-			{heritages.map((heritage) => (
-				<Card key={heritage.id} className="w-xl">
+			{chapter.heritages.map((heritage) => (
+				<Card key={heritage.id} className="w-full max-w-xl">
 					<CardHeader>
-						<CardTitle>{heritage.name}</CardTitle>
+						<span>{heritage.countries.join("/")}</span>
+						<CardTitle className="text-lg">{heritage.name}</CardTitle>
 					</CardHeader>
-					<CardContent>
-						<div>{heritage.heritageType}</div>
-						<div>{heritage.inscriptionYear}年</div>
-						<ul className="flex content-center gap-2">
-							{heritage.criteria.map((criteria) => (
-								<li key={criteria}>({criteria})</li>
-							))}
-						</ul>
+					<CardContent className="text-sm flex flex-col gap-5">
+						<div className="flex gap-2">
+							<span>{heritage.heritageType}遺産</span>
+							<span>{heritage.inscriptionYear}年</span>
+							<ul className="flex content-center gap-1">
+								{heritage.criteria.map((criteria) => (
+									<li key={criteria}>({criteria})</li>
+								))}
+							</ul>
+						</div>
+
 						<ul>
 							{heritage.keywords.map((keyword) => (
 								<li
